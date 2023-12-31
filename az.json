@@ -1,0 +1,86 @@
+{
+  "status": "ok",
+  "success": true,
+  "message": "Course details fetched succesfully",
+  "courseDetails": {
+    "_id": "658f748d7bdb152b0d53e040",
+    "title": "30 Days of Python Programing - Full Bootcamp Course",
+    "creator": "Rita Doe",
+    "thumbnail": "https://res.cloudinary.com/dfdlbxdqi/image/upload/v1697925432/eCommerce/pexels-pixabay-207600_uewdlb.jpg",
+    "description": "This 30 Days Python programming bootcamp course is one of the best that you will see around. Here, we explain key Python programming concept such as variables and a lot of others",
+    "lessons": [
+      {
+        "lesson_name": "Introduction to the course",
+        "subscriptionRequired": false,
+        "modules": [
+          {
+            "_id": "658cc7baec30112657618df6",
+            "module_name": "Introduction to our course",
+            "firebase_id": "https://firebasestorage.googleapis.com/v0/b/video-application-c259e.appspot.com/o/b19c4d4b1c09a24ce57f510b659d27b8.mp4?alt=media&token=77393130-a26f-4dd2-ba9f-9037699a601a",
+            "subscriptionRequired": false,
+            "__v": 0
+          }
+        ],
+        "_id": "658f748d7bdb152b0d53e041"
+      },
+      {
+        "lesson_name": "Brief overview of the Python course",
+        "subscriptionRequired": true,
+        "modules": [
+          {
+            "_id": "658cc8cbec30112657618df8",
+            "module_name": "Why learn Python programming",
+            "firebase_id": "https://firebasestorage.googleapis.com/v0/b/video-application-c259e.appspot.com/o/d8c9c4b32f38291fb38ec1d6813a7fb5.mp4?alt=media&token=260720cd-38a9-4d33-9042-f43be08add78",
+            "subscriptionRequired": true,
+            "__v": 0
+          }
+        ],
+        "_id": "658f748d7bdb152b0d53e042"
+      },
+      {
+        "lesson_name": "Data Types",
+        "subscriptionRequired": true,
+        "modules": [
+          {
+            "_id": "658cc91bec30112657618dfa",
+            "module_name": "Variables",
+            "firebase_id": "https://firebasestorage.googleapis.com/v0/b/video-application-c259e.appspot.com/o/117ea675d0e328ebf8d516bb5d8f6c92.mp4?alt=media&token=410439bc-ffa0-4246-a449-4eff9404694e",
+            "subscriptionRequired": true,
+            "__v": 0
+          },
+          {
+            "_id": "658f73c57bdb152b0d53e039",
+            "module_name": "Numbers",
+            "firebase_id": "https://firebasestorage.googleapis.com/v0/b/video-application-c259e.appspot.com/o/88b96120237ef023d7a3889cd76a14ab.mp4?alt=media&token=067b9ac7-a25e-400a-913b-9774e924eb07",
+            "subscriptionRequired": true,
+            "__v": 0
+          }
+        ],
+        "_id": "658f748d7bdb152b0d53e043"
+      },
+      {
+        "lesson_name": "Functions in Python",
+        "subscriptionRequired": true,
+        "modules": [
+          {
+            "_id": "658f74197bdb152b0d53e03b",
+            "module_name": "Understanding Functions in Python",
+            "firebase_id": "https://firebasestorage.googleapis.com/v0/b/video-application-c259e.appspot.com/o/d873643740b4335029572f38bcefcabe.mp4?alt=media&token=34e23f52-3806-41c5-9eec-fceafa03c323",
+            "subscriptionRequired": true,
+            "__v": 0
+          },
+          {
+            "_id": "658f74427bdb152b0d53e03d",
+            "module_name": "Arguments and Perimeters in Python",
+            "firebase_id": "https://firebasestorage.googleapis.com/v0/b/video-application-c259e.appspot.com/o/5384b686504c230e29720a3b1de8aeaf.mp4?alt=media&token=7726e822-03e6-42ce-8aad-9a90e3b68b46",
+            "subscriptionRequired": true,
+            "__v": 0
+          }
+        ],
+        "_id": "658f748d7bdb152b0d53e044"
+      }
+    ],
+    "subscribers": [],
+    "__v": 0
+  }
+}
