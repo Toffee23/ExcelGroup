@@ -1,10 +1,18 @@
 import 'package:course_view/pages/home/page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 import 'pages/navigation/page.dart';
 
-void main() => runApp(const ProviderScope(child: ExcelAcademy()));
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  runApp(const ProviderScope(child: ExcelAcademy()));
+}
 
 class ExcelAcademy extends StatelessWidget {
   const ExcelAcademy({super.key});

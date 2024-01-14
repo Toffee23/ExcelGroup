@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1027112230279-4qurvqks6aq07tmb4p3jam6davv9j0ep.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1027112230279-4qurvqks6aq07tmb4p3jam6davv9j0ep</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>1027112230279-64d5mvtib4gpfo9bs1fh0kmjpdbs4e2t.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDEXxk03HDBG2vWxdacTcKrhwPg9gPwZUg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1027112230279</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.courseView</string>
+	<key>PROJECT_ID</key>
+	<string>excel-academy-online</string>
+	<key>STORAGE_BUCKET</key>
+	<string>excel-academy-online.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1027112230279:ios:f8ff0632c164551ff9c722</string>
+	<key>DATABASE_URL</key>
+	<string>https://excel-academy-online-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
