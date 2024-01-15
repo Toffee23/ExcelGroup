@@ -1,13 +1,12 @@
 import 'package:course_view/pages/notification/notification_service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_ui_firestore/firebase_ui_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod/riverpod.dart';
 
 class notificationUi extends StatelessWidget {
   notificationUi({super.key});
+  static const route = '/notification-screen';
 
   Future<dynamic> _getNotifications() async {
     var _totalNotifications = 1;
@@ -25,6 +24,7 @@ class notificationUi extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final message = ModalRoute.of(context)!.settings.arguments;
     return Scaffold(
       appBar: AppBar(
         title: Text('Notifications'),
