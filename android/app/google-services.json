@@ -1,0 +1,115 @@
+{
+  "project_info": {
+    "project_number": "1027112230279",
+    "firebase_url": "https://excel-academy-online-default-rtdb.firebaseio.com",
+    "project_id": "excel-academy-online",
+    "storage_bucket": "excel-academy-online.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1027112230279:android:1db2b8c4ae1d5426f9c722",
+        "android_client_info": {
+          "package_name": "com.example.course_view"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1027112230279-clob48i1d7e0pd1uhlmgur8i7j3gu000.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmioqey7cVpD_nvJBmLsUpiBoijCPmjEo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1027112230279-clob48i1d7e0pd1uhlmgur8i7j3gu000.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1027112230279-4qurvqks6aq07tmb4p3jam6davv9j0ep.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.courseView"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1027112230279:android:7d45ccd3b9d0f816f9c722",
+        "android_client_info": {
+          "package_name": "com.excel_academy.mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1027112230279-64d5mvtib4gpfo9bs1fh0kmjpdbs4e2t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.excel_academy.mobile",
+            "certificate_hash": "03a474ff0afd04a81164a4a393df91de7f25bf02"
+          }
+        },
+        {
+          "client_id": "1027112230279-70kglqabjs8pbrpq03jp0h9csumptapd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.excel_academy.mobile",
+            "certificate_hash": "050e4a2d9fda337473909ba8492ff26b4968d8e2"
+          }
+        },
+        {
+          "client_id": "1027112230279-ekcnrh7sl4sl2vh6m2h8v7pl9gcu8lve.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.excel_academy.mobile",
+            "certificate_hash": "a99befb344051df558df379b2c388a9aa091236b"
+          }
+        },
+        {
+          "client_id": "1027112230279-orsrug45f78vqalv65jkjufq4cl7csdb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.excel_academy.mobile",
+            "certificate_hash": "c7a0cff00a98c746f8de75dafae0c14f67064631"
+          }
+        },
+        {
+          "client_id": "1027112230279-clob48i1d7e0pd1uhlmgur8i7j3gu000.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmioqey7cVpD_nvJBmLsUpiBoijCPmjEo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1027112230279-clob48i1d7e0pd1uhlmgur8i7j3gu000.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1027112230279-4qurvqks6aq07tmb4p3jam6davv9j0ep.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.courseView"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

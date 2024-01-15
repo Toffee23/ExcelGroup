@@ -1,5 +1,7 @@
+import 'package:course_view/pages/notification/notification_ui.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 import '../cart/page.dart';
 import '../home/page.dart';
@@ -82,6 +84,33 @@ class _NavigationPageState extends State<NavigationPage> {
               onTap: (int index) => widget.switchTab(_pageController, index),
             );
           },
+        ),
+        floatingActionButton: SpeedDial(
+          animatedIcon: AnimatedIcons.add_event,
+          backgroundColor: const Color(0xffD0D1D2),
+          iconTheme: const IconThemeData(color: Color(0xff323232)),
+          children: [
+            SpeedDialChild(
+              label: 'Community Groups',
+              child: Icon(Icons.people),
+              onTap: () {
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => CommunityHomeUi()),
+                // );
+              },
+            ),
+            SpeedDialChild(
+              label: 'Notifications',
+              child: Icon(Icons.add_alert_rounded),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => notificationUi()),
+                );
+              },
+            ),
+          ],
         ),
       ),
     );
