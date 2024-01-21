@@ -1,3 +1,4 @@
+import 'package:course_view/pages/community/ui/communnity_home.dart';
 import 'package:course_view/pages/notification/notification_ui.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -94,10 +95,10 @@ class _NavigationPageState extends State<NavigationPage> {
               label: 'Community Groups',
               child: Icon(Icons.people),
               onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => CommunityHomeUi()),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CommunityHomeUi()),
+                );
               },
             ),
             SpeedDialChild(
