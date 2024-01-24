@@ -1,17 +1,21 @@
+import 'package:course_view/widgets/place_holders.dart';
 import 'package:flutter/material.dart';
 
 import '../pages/course_view/page.dart';
 import '../pages/home/model.dart';
-import 'place_holders.dart';
 
 class HomeCard extends StatelessWidget {
   const HomeCard({
     Key? key,
     this.isFirst = false,
     required this.course,
+    required this.buttonText,
+    this.toggleCartButton,
   }) : super(key: key);
   final bool isFirst;
   final CoursesModel course;
+  final String buttonText;
+  final VoidCallback? toggleCartButton;
 
   @override
   Widget build(BuildContext context) {
@@ -27,16 +31,21 @@ class HomeCard extends StatelessWidget {
               MaterialPageRoute(
                   builder: (context) => CourseViewPage(course: course)));
         },
-        padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
+        padding: EdgeInsets.zero,
         color: Colors.white,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             AspectRatio(
               aspectRatio: 16 / 9,
-              child: ImageLoader(imageUrl: course.thumbnail),
+              child: ImageLoader(
+                imageUrl: course.thumbnail,
+                fit: BoxFit.cover,
+                decoration:
+                    const BoxDecoration(borderRadius: BorderRadius.zero),
+              ),
             ),
-            const SizedBox(height: 10.0),
+            const SizedBox(height: 4.0),
             Padding(
               padding: const EdgeInsets.only(left: 4.0),
               child: Row(
@@ -55,31 +64,29 @@ class HomeCard extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 4.0),
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Text(
                 course.title,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
-                style: Theme.of(context).textTheme.titleSmall,
+                style: Theme.of(context)
+                    .textTheme
+                    .titleSmall
+                    ?.copyWith(height: 1.2),
               ),
             ),
             const Spacer(),
             Row(
               children: <Widget>[
                 TextButton(
-                  onPressed: () {},
+                  onPressed: toggleCartButton,
                   style: ButtonStyle(
-                    padding: const MaterialStatePropertyAll(
-                      EdgeInsets.symmetric(
-                        horizontal: 4.0,
-                        vertical: 5.0,
-                      ),
-                    ),
                     minimumSize: const MaterialStatePropertyAll(Size.zero),
                     foregroundColor: MaterialStatePropertyAll(
-                        Theme.of(context).primaryColor),
+                      Theme.of(context).primaryColor,
+                    ),
                   ),
-                  child: const Text('Add to cart'),
+                  child: Text(buttonText),
                 ),
                 const Spacer(),
                 Icon(
@@ -97,52 +104,76 @@ class HomeCard extends StatelessWidget {
   }
 }
 
-// class _VideoAppState extends State<VideoApp> {
-//   late VideoPlayerController _controller;
-//
-//   @override
-//   void initState() {
-//     super.initState();
-//     _controller = VideoPlayerController.networkUrl(Uri.parse(
-//         'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4'))
-//       ..initialize().then((_) {
-//         // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-//         setState(() {});
-//       });
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Video Demo',
-//       home: Scaffold(
-//         body: Center(
-//           child: _controller.value.isInitialized
-//               ? AspectRatio(
-//             aspectRatio: _controller.value.aspectRatio,
-//             child: VideoPlayer(_controller),
-//           )
-//               : Container(),
-//         ),
-//         floatingActionButton: FloatingActionButton(
-//           onPressed: () {
-//             setState(() {
-//               _controller.value.isPlaying
-//                   ? _controller.pause()
-//                   : _controller.play();
-//             });
-//           },
-//           child: Icon(
-//             _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-//
-//   @override
-//   void dispose() {
-//     super.dispose();
-//     _controller.dispose();
-//   }
-// }
+class RowListCard extends StatelessWidget {
+  const RowListCard({
+    Key? key,
+    required this.children,
+  }) : super(key: key);
+  final List<ProgramButton> children;
+
+  List<List<ProgramButton>> get pairedChildren {
+    List<List<ProgramButton>> result = [];
+
+    for (int i = 0; i < (children.length / 2).ceil(); i++) {
+      int start = i * 2;
+      int end = (i + 1) * 2;
+      end = end > children.length ? children.length : end;
+      result.add(children.sublist(start, end));
+    }
+    return result;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: pairedChildren.map(
+        (buttons) {
+          return Container(
+            margin: const EdgeInsets.only(bottom: 8.0),
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: buttons.first,
+                ),
+                const SizedBox(width: 8.0),
+                if (buttons.length > 1)
+                  Expanded(
+                    child: buttons.last,
+                  )
+                else
+                  const Expanded(
+                    child: SizedBox(),
+                  ),
+              ],
+            ),
+          );
+        },
+      ).toList(),
+    );
+  }
+}
+
+class ProgramButton extends StatelessWidget {
+  const ProgramButton({
+    Key? key,
+    required this.program,
+    required this.image,
+    this.onPressed,
+  }) : super(key: key);
+  final String program;
+  final Image image;
+  final VoidCallback? onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialButton(
+      onPressed: onPressed,
+      color: Theme.of(context).scaffoldBackgroundColor,
+      padding: const EdgeInsets.all(4.0),
+      child: Image(
+        image: image.image,
+        fit: BoxFit.fill,
+      ),
+    );
+  }
+}

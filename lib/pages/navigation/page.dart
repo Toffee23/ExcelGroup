@@ -1,11 +1,14 @@
-import 'package:course_view/pages/community/ui/communnity_home.dart';
-import 'package:course_view/pages/notification/notification_ui.dart';
+import 'package:course_view/pages/my_learning/page.dart';
+import 'package:course_view/pages/programs/page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 import '../cart/page.dart';
+import '../community/ui/communnity_home.dart';
 import '../home/page.dart';
+import '../notification/notification_ui.dart';
+import '../profile/page.dart';
 import 'controller.dart';
 
 class NavigationPage extends StatefulWidget with NavigationController {
@@ -36,84 +39,106 @@ class _NavigationPageState extends State<NavigationPage> {
     return WillPopScope(
       onWillPop: () async =>
           widget.onWillPop(_pageController, tabIndexNotifier.value),
-      child: Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 0,
-        ),
-        body: PageView(
-          controller: _pageController,
-          physics: const NeverScrollableScrollPhysics(),
-          onPageChanged: (index) => tabIndexNotifier.value = index,
-          children: <Widget>[
-            const HomePage(),
-            const Placeholder(),
-            const Placeholder(),
-            CartPage(
-                onArrowBackPressed: () => widget.switchTab(_pageController, 0)),
-            const Placeholder(),
-          ],
-        ),
-        bottomNavigationBar: ValueListenableBuilder(
+      child: ValueListenableBuilder(
           valueListenable: tabIndexNotifier,
           builder: (context, selectedIndex, child) {
-            return BottomNavigationBar(
-              type: BottomNavigationBarType.fixed,
-              items: const <BottomNavigationBarItem>[
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.explore_outlined),
-                  label: 'Explore',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(CupertinoIcons.wand_rays),
-                  label: 'Programmes',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.widgets_outlined),
-                  label: 'My Learning',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(CupertinoIcons.cart),
-                  label: 'Cart',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(CupertinoIcons.profile_circled),
-                  label: 'Profile',
-                ),
-              ],
-              currentIndex: selectedIndex,
-              selectedItemColor: Theme.of(context).primaryColor,
-              onTap: (int index) => widget.switchTab(_pageController, index),
+            return Scaffold(
+              appBar: selectedIndex == 0
+                  ? AppBar(
+                      toolbarHeight: 0,
+                    )
+                  : AppBar(
+                      leading: IconButton(
+                        icon: const Icon(Icons.arrow_back),
+                        onPressed: () => widget.switchTab(_pageController, 0),
+                      ),
+                      title: Text(
+                        selectedIndex == 1
+                            ? 'Programs'
+                            : selectedIndex == 2
+                                ? 'My Learning'
+                                : selectedIndex == 3
+                                    ? 'Course Cart'
+                                    : 'Profile',
+                      ),
+                    ),
+              body: PageView(
+                controller: _pageController,
+                physics: const NeverScrollableScrollPhysics(),
+                onPageChanged: (index) => tabIndexNotifier.value = index,
+                children: <Widget>[
+                  HomePage(
+                    onTabSwitch: (index) =>
+                        widget.switchTab(_pageController, index),
+                  ),
+                  const ProgramsPage(),
+                  const MyLearningPage(),
+                  CartPage(
+                    onArrowBackPressed: () =>
+                        widget.switchTab(_pageController, 0),
+                  ),
+                  const ProfilePage(),
+                ],
+              ),
+              bottomNavigationBar: BottomNavigationBar(
+                type: BottomNavigationBarType.fixed,
+                items: const <BottomNavigationBarItem>[
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.explore_outlined),
+                    label: 'Explore',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.category_rounded),
+                    label: 'Programs',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.widgets_outlined),
+                    label: 'My Learning',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(CupertinoIcons.cart),
+                    label: 'Cart',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(CupertinoIcons.profile_circled),
+                    label: 'Profile',
+                  ),
+                ],
+                currentIndex: selectedIndex,
+                selectedItemColor: Theme.of(context).primaryColor,
+                onTap: (int index) => widget.switchTab(_pageController, index),
+              ),
+              floatingActionButton: SpeedDial(
+                animatedIcon: AnimatedIcons.add_event,
+                backgroundColor: const Color(0xffD0D1D2),
+                iconTheme: const IconThemeData(color: Color(0xff323232)),
+                children: <SpeedDialChild>[
+                  SpeedDialChild(
+                    label: 'Community Groups',
+                    child: const Icon(Icons.people),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const CommunityHomeUi()),
+                      );
+                    },
+                  ),
+                  SpeedDialChild(
+                    label: 'Notifications',
+                    child: const Icon(Icons.add_alert_rounded),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => notificationUi()),
+                      );
+                    },
+                  ),
+                ],
+              ),
             );
-          },
-        ),
-        floatingActionButton: SpeedDial(
-          animatedIcon: AnimatedIcons.add_event,
-          backgroundColor: const Color(0xffD0D1D2),
-          iconTheme: const IconThemeData(color: Color(0xff323232)),
-          children: [
-            SpeedDialChild(
-              label: 'Community Groups',
-              child: Icon(Icons.people),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => CommunityHomeUi()),
-                );
-              },
-            ),
-            SpeedDialChild(
-              label: 'Notifications',
-              child: Icon(Icons.add_alert_rounded),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => notificationUi()),
-                );
-              },
-            ),
-          ],
-        ),
-      ),
+          }),
     );
   }
 }

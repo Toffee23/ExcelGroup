@@ -8,24 +8,29 @@ class ImageLoader extends StatelessWidget {
     required this.imageUrl,
     this.height,
     this.width,
+    this.fit,
     this.decoration,
   }) : super(key: key);
   final String imageUrl;
   final double? height;
   final double? width;
+  final BoxFit? fit;
   final Decoration? decoration;
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
+    return Container(
+      clipBehavior: Clip.hardEdge,
       decoration: decoration ??
           BoxDecoration(
-              color: Colors.grey.shade200,
-              borderRadius: BorderRadius.circular(20)),
+            color: Colors.grey.shade200,
+            borderRadius: BorderRadius.circular(20),
+          ),
       child: CachedNetworkImage(
         imageUrl: imageUrl,
         height: height,
         width: width,
+        fit: fit,
         placeholder: (context, url) => Shimmer.fromColors(
           baseColor: Colors.grey.shade300,
           highlightColor: Colors.grey.shade100,

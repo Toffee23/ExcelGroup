@@ -8,6 +8,41 @@ import '../../widgets/snack_bar.dart';
 import '../../widgets/text_field.dart';
 import '../home/provider.dart';
 
+final data = <String, List<String>>{
+  'ICAN': [
+    'ATS LEVEL 1',
+    'ATS LEVEL 2',
+    'ATS LEVEL 3',
+    'FOUNDATION',
+    'SKILL',
+    'PROFESSIONAL',
+  ],
+  'ACCA': ['Trending Courses', 'You might also like'],
+  'CITN': [
+    'FOUNDATION',
+    'professional TAXATION I',
+    'professional TAXATION II',
+  ],
+  'CIMA': ['Trending Courses', 'You might also like'],
+  'CIS': ['Trending Courses', 'You might also like'],
+  'AMAN': ['Trending Courses', 'You might also like'],
+  'CIBN': [
+    'DIPLOMA LEVEL',
+    'Intermediate Professional Level',
+    'Chartered Banker Level',
+  ],
+  'CFA': ['Trending Courses', 'You might also like'],
+  'CPA': ['Trending Courses', 'You might also like'],
+  'CIPM': [
+    'FOUNDATION I',
+    'FOUNDATION II',
+    'INTERMEDIATE I',
+    'INTERMEDIATE II',
+    'professional I',
+    'professional II',
+  ],
+};
+
 class ProgramCourses extends ConsumerWidget {
   const ProgramCourses({
     Key? key,
@@ -15,11 +50,35 @@ class ProgramCourses extends ConsumerWidget {
   }) : super(key: key);
   final String program;
 
+  Widget _title(BuildContext context, String text) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 15.0, right: 2.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Text(
+            text,
+            style: Theme.of(context).textTheme.titleSmall,
+          ),
+          TextButton(
+            onPressed: () {},
+            style: ButtonStyle(
+              foregroundColor: MaterialStatePropertyAll(
+                Theme.of(context).hintColor,
+              ),
+            ),
+            child: const Text('See more'),
+          )
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(program),
+        title: Text('$program Courses'),
         centerTitle: true,
       ),
       body: Column(
@@ -86,104 +145,89 @@ class ProgramCourses extends ConsumerWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 15.0),
-                              child: Row(
-                                children: (courses ?? []).map((course) {
-                                  return HomeCard(
-                                    isFirst: courses!.first == course,
-                                    course: course,
-                                    buttonText: ref
-                                            .watch(cartsProvider)
-                                            .contains(course)
-                                        ? 'Remove from cart'
-                                        : 'Add to cart',
-                                    toggleCartButton: () {
-                                      final carts = ref.watch(cartsProvider);
-                                      if (carts.contains(course)) {
-                                        ref.read(cartsProvider.notifier).update(
-                                            (state) => state
-                                                .where((item) => item != course)
-                                                .toList());
-                                        showSuccessSnackbar(context,
-                                            'Course removed from cart!');
-                                      } else {
-                                        ref.read(cartsProvider.notifier).update(
-                                            (state) => [...state, course]);
-                                        showSuccessSnackbar(
-                                            context, 'Course added to cart!');
-                                      }
-                                    },
-                                  );
-                                }).toList(),
-                              ),
-                            ),
-                            const SizedBox(height: 20.0),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 15.0, right: 2.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                            ...data[program]!.map((e) {
+                              return Column(
                                 children: <Widget>[
-                                  Text(
-                                    'You might like',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.blueGrey.shade700,
-                                      fontSize: 16,
+                                  _title(context, e),
+                                  SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 15.0),
+                                    child: Row(
+                                      children: (courses ?? []).map((course) {
+                                        return HomeCard(
+                                          isFirst: courses!.first == course,
+                                          course: course,
+                                          buttonText: ref
+                                                  .watch(cartsProvider)
+                                                  .contains(course)
+                                              ? 'Remove from cart'
+                                              : 'Add to cart',
+                                          toggleCartButton: () {
+                                            final carts =
+                                                ref.watch(cartsProvider);
+                                            if (carts.contains(course)) {
+                                              ref
+                                                  .read(cartsProvider.notifier)
+                                                  .update((state) => state
+                                                      .where((item) =>
+                                                          item != course)
+                                                      .toList());
+                                              showSuccessSnackbar(context,
+                                                  'Course removed from cart!');
+                                            } else {
+                                              ref
+                                                  .read(cartsProvider.notifier)
+                                                  .update((state) =>
+                                                      [...state, course]);
+                                              showSuccessSnackbar(context,
+                                                  'Course added to cart!');
+                                            }
+                                          },
+                                        );
+                                      }).toList(),
                                     ),
                                   ),
-                                  TextButton(
-                                      onPressed: () {},
-                                      style: ButtonStyle(
-                                        foregroundColor:
-                                            MaterialStatePropertyAll(
-                                          Theme.of(context).primaryColor,
-                                        ),
-                                      ),
-                                      child: const Text('See more'))
+                                  const SizedBox(height: 10.0),
                                 ],
-                              ),
-                            ),
-                            SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 15.0),
-                              child: Row(
-                                children:
-                                    (courses ?? []).reversed.map((course) {
-                                  return HomeCard(
-                                    isFirst: courses!.first == course,
-                                    course: course,
-                                    buttonText: ref
-                                            .watch(cartsProvider)
-                                            .contains(course)
-                                        ? 'Remove from cart'
-                                        : 'Add to cart',
-                                    toggleCartButton: () {
-                                      final carts = ref.watch(cartsProvider);
-                                      if (carts.contains(course)) {
-                                        ref.read(cartsProvider.notifier).update(
-                                            (state) => state
-                                                .where((item) => item != course)
-                                                .toList());
-                                        showSuccessSnackbar(context,
-                                            'Course removed from cart!');
-                                      } else {
-                                        ref.read(cartsProvider.notifier).update(
-                                            (state) => [...state, course]);
-                                        showSuccessSnackbar(
-                                            context, 'Course added to cart!');
-                                      }
-                                    },
-                                  );
-                                }).toList(),
-                              ),
-                            ),
-                            const SizedBox(height: 40.0),
+                              );
+                            }).toList(),
+                            // SingleChildScrollView(
+                            //   scrollDirection: Axis.horizontal,
+                            //   padding:
+                            //       const EdgeInsets.symmetric(horizontal: 15.0),
+                            //   child: Row(
+                            //     children:
+                            //         (courses ?? []).reversed.map((course) {
+                            //       return HomeCard(
+                            //         isFirst: courses!.first == course,
+                            //         course: course,
+                            //         buttonText: ref
+                            //                 .watch(cartsProvider)
+                            //                 .contains(course)
+                            //             ? 'Remove from cart'
+                            //             : 'Add to cart',
+                            //         toggleCartButton: () {
+                            //           final carts = ref.watch(cartsProvider);
+                            //           if (carts.contains(course)) {
+                            //             ref.read(cartsProvider.notifier).update(
+                            //                 (state) => state
+                            //                     .where((item) => item != course)
+                            //                     .toList());
+                            //             showSuccessSnackbar(context,
+                            //                 'Course removed from cart!');
+                            //           } else {
+                            //             ref.read(cartsProvider.notifier).update(
+                            //                 (state) => [...state, course]);
+                            //             showSuccessSnackbar(
+                            //                 context, 'Course added to cart!');
+                            //           }
+                            //         },
+                            //       );
+                            //     }).toList(),
+                            //   ),
+                            // ),
+                            // const SizedBox(height: 40.0),
                           ],
                         ),
                       );

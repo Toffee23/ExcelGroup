@@ -13,7 +13,7 @@ mixin NavigationController on Widget {
   void switchTab(PageController pageController, int index) {
     pageController.animateToPage(
       index,
-      duration: const Duration(milliseconds: 80),
+      duration: const Duration(milliseconds: 50),
       curve: Curves.easeInOut,
     );
   }
