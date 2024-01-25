@@ -5,7 +5,7 @@ import 'package:course_view/widgets/button.dart';
 import 'package:flutter/material.dart';
 
 class SupportPage extends StatelessWidget {
-  const SupportPage({Key? key}) : super(key: key);
+  const SupportPage({super.key});
 
   @override
   Widget build(BuildContext context) {

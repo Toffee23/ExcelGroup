@@ -106,14 +106,16 @@ class CompletedCard extends StatelessWidget {
     required this.progress,
     required this.progressColor,
     required this.duration,
-    required this.onPressed,
+    required this.onAction1,
+    required this.onAction2,
   }) : super(key: key);
   final Image image;
   final String title;
   final double progress;
   final Color progressColor;
   final Duration duration;
-  final VoidCallback? onPressed;
+  final VoidCallback? onAction1;
+  final VoidCallback? onAction2;
 
   @override
   Widget build(BuildContext context) {
@@ -170,7 +172,7 @@ class CompletedCard extends StatelessWidget {
                 Row(
                   children: <Widget>[
                     TextButton(
-                      onPressed: onPressed,
+                      onPressed: onAction1,
                       style: ButtonStyle(
                         minimumSize: const MaterialStatePropertyAll(Size.zero),
                         padding:
@@ -189,7 +191,7 @@ class CompletedCard extends StatelessWidget {
                     ),
                     const SizedBox(width: 6.0),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: onAction2,
                       style: ButtonStyle(
                         minimumSize: const MaterialStatePropertyAll(Size.zero),
                         padding:

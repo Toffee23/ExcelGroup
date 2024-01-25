@@ -16,7 +16,7 @@ mixin ReferralPageController on Widget {
   }
 
   void shareToFacebook(BuildContext context, String text) {
-    _shareToFacebook(context, text).then((successful) {
+    _shareToFacebook(context, "AZAG").then((successful) {
       if (!successful) {
         showSnackbar(
           context: context,
@@ -87,6 +87,6 @@ mixin ReferralPageController on Widget {
   }
 
   void share(BuildContext context, String text) {
-    Share.share(text, subject: 'Sharing to Facebook');
+    Share.share(text, subject: 'Share');
   }
 }

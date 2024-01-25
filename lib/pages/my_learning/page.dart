@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import '../mock_exam/page.dart';
 
 class MyLearningPage extends StatelessWidget {
-  const MyLearningPage({Key? key}) : super(key: key);
+  const MyLearningPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +70,8 @@ class MyLearningPage extends StatelessWidget {
                       progress: progress,
                       progressColor: course.progressColor,
                       duration: course.duration,
-                      onPressed: () => pushTo(context, const MockExamPage()),
+                      onAction1: () => pushTo(context, const MockExamPage()),
+                      onAction2: () => pushTo(context, const QuizView()),
                     );
                   },
                 );

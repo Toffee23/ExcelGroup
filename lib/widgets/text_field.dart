@@ -2,20 +2,22 @@ import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
-    Key? key,
+    super.key,
     this.hintText,
     this.margin = const EdgeInsets.only(bottom: 15.0),
     this.prefixIcon,
     this.suffixIcon,
     this.controller,
     this.onTap,
-  }) : super(key: key);
+    this.onChanged,
+  });
   final String? hintText;
   final EdgeInsetsGeometry? margin;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final TextEditingController? controller;
   final VoidCallback? onTap;
+  final ValueChanged<String>? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +26,7 @@ class CustomTextField extends StatelessWidget {
       child: TextField(
         onTap: onTap,
         controller: controller,
+        onChanged: onChanged,
         cursorColor: Theme.of(context).primaryColor,
         onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
         decoration: InputDecoration(

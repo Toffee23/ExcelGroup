@@ -1,10 +1,8 @@
-import 'package:course_view/pages/home/page.dart';
 import 'package:course_view/pages/notification/notification_service.dart';
 import 'package:course_view/pages/notification/notification_ui.dart';
 import 'package:course_view/providers.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'core/constants/themes.dart';

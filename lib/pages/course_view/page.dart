@@ -26,9 +26,9 @@ import 'controller.dart';
 class CourseViewPage extends ConsumerStatefulWidget
     with CourseViewPageController {
   const CourseViewPage({
-    Key? key,
+    super.key,
     required this.course,
-  }) : super(key: key);
+  });
   final CoursesModel course;
 
   @override
@@ -318,7 +318,7 @@ class _CourseViewPageState extends ConsumerState<CourseViewPage> {
                               ),
                               const SizedBox(width: 8.0),
                               ActionButton(
-                                onPressed: () {},
+                                onPressed: () => widget.onShare(context),
                                 iconData: CupertinoIcons.link,
                                 text: 'Share',
                               )
@@ -770,13 +770,6 @@ class _CourseViewPageState extends ConsumerState<CourseViewPage> {
     return Text(
       text,
       style: Theme.of(context).textTheme.bodySmall,
-    );
-  }
-
-  Widget _smallText(String text) {
-    return Text(
-      text,
-      style: Theme.of(context).textTheme.labelSmall,
     );
   }
 }

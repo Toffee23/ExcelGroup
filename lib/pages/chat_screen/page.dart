@@ -1,11 +1,31 @@
 import 'package:course_view/core/constants/images.dart';
+import 'package:course_view/pages/chat_screen/providers.dart';
+import 'package:course_view/pages/chat_screen/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ChatScreen extends StatelessWidget {
-  const ChatScreen({Key? key}) : super(key: key);
+import 'controller.dart';
+
+class ChatScreen extends ConsumerStatefulWidget with ChatScreenController {
+  const ChatScreen({super.key});
+
+  @override
+  ConsumerState<ChatScreen> createState() => _ChatScreenState();
+}
+
+class _ChatScreenState extends ConsumerState<ChatScreen> {
+  final controller = TextEditingController();
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final messages = ref.watch(messagesProvider);
+
     return Scaffold(
       appBar: AppBar(
         leading: const SizedBox.shrink(),
@@ -55,8 +75,19 @@ class ChatScreen extends StatelessWidget {
                 )
               ],
             ),
-            const Expanded(
-              child: SingleChildScrollView(),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                child: ListView.separated(
+                  reverse: true,
+                  itemCount: messages.length,
+                  separatorBuilder: (_, __) => const SizedBox(height: 10.0),
+                  itemBuilder: (BuildContext context, int index) {
+                    final message = messages.elementAt(index);
+                    return MessageBox(message: message);
+                  },
+                ),
+              ),
             ),
             Row(
               children: <Widget>[
@@ -65,7 +96,7 @@ class ChatScreen extends StatelessWidget {
                 Expanded(
                   child: DecoratedBox(
                     decoration: BoxDecoration(
-                      color: Theme.of(context).canvasColor,
+                      color: Theme.of(context).cardColor,
                       borderRadius: BorderRadius.circular(4.0),
                     ),
                     child: Row(
@@ -73,6 +104,7 @@ class ChatScreen extends StatelessWidget {
                       children: <Widget>[
                         Expanded(
                           child: TextField(
+                            controller: controller,
                             cursorColor: Theme.of(context).primaryColor,
                             maxLines: 5,
                             minLines: 1,
@@ -88,7 +120,7 @@ class ChatScreen extends StatelessWidget {
                           ),
                         ),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () => widget.onSend(ref, controller),
                           icon: AssetImages.send,
                         ),
                       ],

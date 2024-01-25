@@ -62,7 +62,7 @@ class HomePage extends ConsumerWidget {
                       ),
                     ),
                     Container(
-                      color: Theme.of(context).canvasColor,
+                      color: Theme.of(context).cardColor,
                       padding: const EdgeInsets.all(8),
                       child: Row(
                         children: <Widget>[
@@ -173,7 +173,7 @@ class HomePage extends ConsumerWidget {
                     const SizedBox(height: 15.0),
                     MaterialButton(
                       onPressed: () => pushTo(context, const ProgramsPage()),
-                      color: Theme.of(context).canvasColor,
+                      color: Theme.of(context).cardColor,
                       padding: const EdgeInsets.all(10.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -1,5 +1,6 @@
 import 'package:course_view/pages/course_view/model.dart';
 import 'package:flutter/material.dart';
+import 'package:share/share.dart';
 
 import '../../core/api_handler/api_endpoints.dart';
 import '../../core/api_handler/api_handler_models.dart';
@@ -76,5 +77,10 @@ mixin CourseViewPageController on Widget {
 
   void _onSuccessful(BuildContext context) {
     Navigator.of(context).pop();
+  }
+
+  void onShare(BuildContext context) {
+    const String text = 'Pass text, link or content to share here';
+    Share.share(text, subject: 'Share');
   }
 }

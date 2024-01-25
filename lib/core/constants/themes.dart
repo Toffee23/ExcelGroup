@@ -46,22 +46,23 @@ class AppThemeData {
     );
   }
 
-  static dark(BuildContext context) =>
-      ThemeData.dark(useMaterial3: true).copyWith(
-        primaryColor: const Color(0xFFFF822B),
-        canvasColor: const Color(0xFF191919),
-        scaffoldBackgroundColor: const Color(0xff131313),
-        appBarTheme: AppBarTheme(
-          centerTitle: true,
-          systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: Theme.of(context).scaffoldBackgroundColor,
-            statusBarIconBrightness: Brightness.dark,
-          ),
-          titleTextStyle: const TextStyle(
-            fontWeight: FontWeight.w700,
-            fontSize: 16,
-            color: Color(0xFFF3F3F1),
-          ),
+  static dark(BuildContext context) {
+    return ThemeData.dark(useMaterial3: true).copyWith(
+      primaryColor: const Color(0xFFFF822B),
+      cardColor: const Color(0xFF191919),
+      scaffoldBackgroundColor: const Color(0xff131313),
+      appBarTheme: AppBarTheme(
+        centerTitle: true,
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: Theme.of(context).scaffoldBackgroundColor,
+          statusBarIconBrightness: Brightness.dark,
         ),
-      );
+        titleTextStyle: const TextStyle(
+          fontWeight: FontWeight.w700,
+          fontSize: 16,
+          color: Color(0xFFF3F3F1),
+        ),
+      ),
+    );
+  }
 }
